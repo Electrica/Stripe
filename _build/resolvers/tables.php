@@ -8,10 +8,10 @@ if ($transport->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
-            $modx->addPackage('modextra', MODX_CORE_PATH . 'components/modextra/model/');
+            $modx->addPackage('stripe', MODX_CORE_PATH . 'components/stripe/model/');
             $manager = $modx->getManager();
             $objects = [];
-            $schemaFile = MODX_CORE_PATH . 'components/modextra/model/schema/modextra.mysql.schema.xml';
+            $schemaFile = MODX_CORE_PATH . 'components/stripe/model/schema/stripe.mysql.schema.xml';
             if (is_file($schemaFile)) {
                 $schema = new SimpleXMLElement($schemaFile, 0, true);
                 if (isset($schema->object)) {

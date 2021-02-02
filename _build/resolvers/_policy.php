@@ -8,18 +8,18 @@ if ($transport->xpdo) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
             // Assign policy to template
-            if ($policy = $modx->getObject('modAccessPolicy', array('name' => 'modExtraUserPolicy'))) {
+            if ($policy = $modx->getObject('modAccessPolicy', array('name' => 'StripeUserPolicy'))) {
                 if ($template = $modx->getObject('modAccessPolicyTemplate',
-                    array('name' => 'modExtraUserPolicyTemplate'))
+                    array('name' => 'StripeUserPolicyTemplate'))
                 ) {
                     $policy->set('template', $template->get('id'));
                     $policy->save();
                 } else {
                     $modx->log(xPDO::LOG_LEVEL_ERROR,
-                        '[modExtra] Could not find modExtraUserPolicyTemplate Access Policy Template!');
+                        '[Stripe] Could not find StripeUserPolicyTemplate Access Policy Template!');
                 }
             } else {
-                $modx->log(xPDO::LOG_LEVEL_ERROR, '[modExtra] Could not find modExtraUserPolicyTemplate Access Policy!');
+                $modx->log(xPDO::LOG_LEVEL_ERROR, '[Stripe] Could not find StripeUserPolicyTemplate Access Policy!');
             }
             break;
     }

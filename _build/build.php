@@ -1,6 +1,6 @@
 <?php
 
-class modExtraPackage
+class StripePackage
 {
     /** @var modX $modx */
     public $modx;
@@ -17,7 +17,7 @@ class modExtraPackage
 
 
     /**
-     * modExtraPackage constructor.
+     * StripePackage constructor.
      *
      * @param $core_path
      * @param array $config
@@ -753,7 +753,7 @@ if (!file_exists(dirname(__FILE__) . '/config.inc.php')) {
     exit('Could not load MODX config. Please specify correct MODX_CORE_PATH constant in config file!');
 }
 $config = require(dirname(__FILE__) . '/config.inc.php');
-$install = new modExtraPackage(MODX_CORE_PATH, $config);
+$install = new StripePackage(MODX_CORE_PATH, $config);
 $builder = $install->process();
 
 if (!empty($config['download'])) {

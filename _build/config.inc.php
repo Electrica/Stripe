@@ -9,8 +9,8 @@ if (!defined('MODX_CORE_PATH')) {
 }
 
 return [
-    'name' => 'modExtra',
-    'name_lower' => 'modextra',
+    'name' => 'Stripe',
+    'name_lower' => 'stripe',
     'version' => '2.0.0',
     'release' => 'pl',
     // Install package to site right after build

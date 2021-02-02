@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'modExtra' => [
+    'Stripe' => [
         'description' => '',
         'type' => 'file',
         'content' => '',
-        'namespace' => 'modextra',
-        'lexicon' => 'modextra:dashboards',
+        'namespace' => 'stripe',
+        'lexicon' => 'stripe:dashboards',
         'size' => 'half',
     ],
 ];

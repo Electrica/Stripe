@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'modExtraUserPolicy' => [
-        'description' => 'modExtra policy description.',
+    'StripeUserPolicy' => [
+        'description' => 'Stripe policy description.',
         'data' => [
-            'modextra_save' => true,
+            'stripe_save' => true,
         ]
     ],
 ];

@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'tpl.modExtra.item' => [
+    'tpl.Stripe.item' => [
         'file' => 'item',
         'description' => '',
     ],
-    'tpl.modExtra.office' => [
+    'tpl.Stripe.office' => [
         'file' => 'office',
         'description' => '',
     ],
