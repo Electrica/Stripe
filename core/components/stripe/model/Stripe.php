@@ -137,8 +137,8 @@ class Stripe{
             ],
             'customer' => $this->customer ? $this->customer->id : null,
             'mode' => 'payment',
-            'success_url' => 'http://stripe.local' . $this->modx->getOption('stripe_success_url') . '?order=' . $this->order->id,
-            'cancel_url' => 'http://stripe.local' . $this->modx->getOption('base_url') . $this->modx->getOption('stripe_cancel_url') . '?order=' . $this->order->id,
+            'success_url' => $this->modx->getOption('site_url') . $this->modx->getOption('stripe_success_url') . '?order=' . $this->order->id,
+            'cancel_url' => $this->modx->getOption('site_url') . $this->modx->getOption('base_url') . $this->modx->getOption('stripe_cancel_url') . '?order=' . $this->order->id,
         ]);
 
         //Добавить в заказ ID Stripe

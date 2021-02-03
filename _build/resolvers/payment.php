@@ -23,12 +23,12 @@ if ($transport->xpdo) {
         case xPDOTransport::ACTION_UPGRADE:
             $miniShop2->addService('payment', 'StripePayment', '{core_path}components/stripe/model/stripepayment.class.php');
             /** @var msPayment $payment */
-            if (!$payment = $modx->getObject('msPayment', array('class' => 'Stripe'))) {
+            if (!$payment = $modx->getObject('msPayment', array('class' => 'StripePayment'))) {
                 $payment = $modx->newObject('msPayment');
                 $payment->fromArray(array(
                     'name' => 'Stripe',
                     'active' => false,
-                    'class' => 'Stripe',
+                    'class' => 'StripePayment',
                     'rank' => $modx->getCount('msPayment'),
                     'logo' => MODX_ASSETS_URL . 'components/stripe/stripe.png',
                 ), '', true);
