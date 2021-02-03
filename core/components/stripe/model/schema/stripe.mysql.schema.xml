@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="stripe" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB" phpdoc-package="stripe"
+       version="1.1">
+
+    <object class="StripeOrder" table="stripe_orders" extends="xPDOSimpleObject">
+        <field key="order_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="stripe_id" dbtype="varchar" phptype="string" precision="255" null="true" default=""/>
+
+        <index alias="order_id" name="order_id" primary="false" unique="false" type="BTREE">
+            <column key="order_id" length="" collation="A" null="false"/>
+        </index>
+        <index alias="stripe_id" name="stripe_id" primary="false" unique="false" type="BTREE">
+            <column key="stripe_id" length="" collation="A" null="false"/>
+        </index>
+
+
+        <composite alias="msOrder" class="msOrder" local="order_id" foreign="id" cardinality="many" owner="local" />
+    </object>
+
+</model>

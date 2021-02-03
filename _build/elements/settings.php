@@ -30,5 +30,10 @@ return [
         'xtype' => 'textfield',
         'value' => '',
         'area' => 'stripe_main'
+    ],
+    'thanks_page' => [
+        'xtype' => 'textfield',
+        'value' => '',
+        'area' => 'stripe_main'
     ]
 ];

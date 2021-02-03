@@ -39,6 +39,7 @@ class StripePayment extends msPaymentHandler implements msPaymentInterface
 
         $this->modx->addPackage('stripe', $this->config['modelPath']);
         $this->modx->lexicon->load('stripe:default');
+        $this->modx->lexicon->load('stripe:setting');
 
     }
 

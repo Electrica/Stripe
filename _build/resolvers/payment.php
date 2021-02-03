@@ -64,13 +64,25 @@ if ($transport->xpdo) {
                 ? 'update'
                 : 'create';
 
-            $resource = $modx->runProcessor('resource/'.$processor, [
+            $arr = [
                 'pagetitle' => 'Оплата Stripe',
                 'template' => 0,
                 'content' => $content,
                 'published' => true,
-                'hidemenu' => true
-            ]);
+                'hidemenu' => true,
+                'context_key' => 'web',
+                'class_key' => 'modResource',
+                'parent' => 0
+            ];
+
+            if($processor == 'update'){
+                $object = $modx->getObject('modResource', ['pagetitle' => 'Оплата Stripe']);
+                $arr = array_merge(
+                    ['id' => $object->get('id')],
+                    $arr);
+            }
+
+            $resource = $modx->runProcessor('resource/'.$processor, $arr);
 
             if($resource->isError()){
                 $modx->log(MODX_LOG_LEVEL_ERROR, 'Error create resource Stripe payment');

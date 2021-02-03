@@ -674,6 +674,7 @@ class StripePackage
      */
     public function process()
     {
+        $this->model();
 
         // Add elements
         $elements = scandir($this->config['elements']);

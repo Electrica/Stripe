@@ -39,6 +39,25 @@ class Stripe{
     {
         $this->modx = $modx;
         $this->order = $order;
+
+        $corePath = MODX_CORE_PATH . 'components/stripe/';
+        $assetsUrl = MODX_ASSETS_URL . 'components/stripe/';
+
+        $this->config = array_merge([
+            'corePath' => $corePath,
+            'modelPath' => $corePath . 'model/',
+            'processorsPath' => $corePath . 'processors/',
+
+            'connectorUrl' => $assetsUrl . 'connector.php',
+            'assetsUrl' => $assetsUrl,
+            'cssUrl' => $assetsUrl . 'css/',
+            'jsUrl' => $assetsUrl . 'js/',
+        ], $config);
+
+        $this->modx->addPackage('stripe', $this->config['modelPath']);
+        $this->modx->lexicon->load('stripe:default');
+        $this->modx->lexicon->load('stripe:setting');
+
         $this->getUserData();
         $this->setApiKey();
     }
@@ -142,10 +161,35 @@ class Stripe{
         ]);
 
         //Добавить в заказ ID Stripe
-        $this->order->set('comment', $checkout_session->id);
-        $this->order->save();
+        $q = $this->modx->newQuery('StripeOrder');
+        $q->where(['order_id' => $this->order->get('id')]);
+
+        $stripOrder = $this->modx->getObject('StripeOrder', $q);
+        if(!$stripOrder){
+            $stripOrder = $this->modx->newObject('StripeOrder');
+            $saveAr = [
+                'order_id' => $this->order->get('id'),
+                'stripe_id' => $checkout_session->id
+            ];
+            foreach ($saveAr as $key => $val) {
+                $stripOrder->set($key, $val);
+            }
+            $stripOrder->save();
+        }
 
         return $checkout_session->id;
+    }
+
+    public function getStripeOrderId(){
+        $q = $this->modx->newQuery('StripeOrder');
+        $q->where(['order_id' => $this->order->get('id')]);
+
+        $stripOrder = $this->modx->getObject('StripeOrder', $q);
+        if(!$stripOrder){
+            return false;
+        }
+
+        return $stripOrder->get('stripe_id');
     }
 
     public function verify(){
@@ -155,7 +199,8 @@ class Stripe{
         }
 
         try {
-            $session = \Stripe\Checkout\Session::retrieve($this->order->get('comment'));
+            $stripeId = $this->getStripeOrderId();
+            $session = \Stripe\Checkout\Session::retrieve($stripeId);
         } catch (\Exception $e) {
             $this->modx->log(MODX_LOG_LEVEL_ERROR, '[Stripe] Verify Fail ' . $e->getMessage());
             return false;

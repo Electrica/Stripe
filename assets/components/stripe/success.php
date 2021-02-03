@@ -21,5 +21,5 @@ if(!$order){
 
 $Stripe = new Stripe($modx, $order);
 if($Stripe->verify() === true){
-    $modx->sendRedirect($modx->makeUrl(9,'web','','full'));
+    $modx->sendRedirect($modx->makeUrl($modx->getOption('stripe_thanks_page'),'web','','full'));
 }
