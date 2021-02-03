@@ -21,7 +21,7 @@ if ($transport->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
-            $miniShop2->addService('payment', 'Stripe', '{core_path}components/stripe/model/stripe.class.php');
+            $miniShop2->addService('payment', 'StripePayment', '{core_path}components/stripe/model/stripepayment.class.php');
             /** @var msPayment $payment */
             if (!$payment = $modx->getObject('msPayment', array('class' => 'Stripe'))) {
                 $payment = $modx->newObject('msPayment');
@@ -30,7 +30,7 @@ if ($transport->xpdo) {
                     'active' => false,
                     'class' => 'Stripe',
                     'rank' => $modx->getCount('msPayment'),
-                    'logo' => MODX_ASSETS_URL . 'components/stripe/logo.svg',
+                    'logo' => MODX_ASSETS_URL . 'components/stripe/stripe.png',
                 ), '', true);
                 $payment->save();
             }

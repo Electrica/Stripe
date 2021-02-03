@@ -2,19 +2,17 @@
 /**
  * https://stripe.com/docs/development/quickstart
  */
-
-
-
 if (!class_exists('msPaymentInterface')) {
     /** @noinspection PhpIncludeInspection */
     require_once MODX_CORE_PATH . 'components/minishop2/model/minishop2/mspaymenthandler.class.php';
 }
 
 
-class Stripe extends msPaymentHandler implements msPaymentInterface
+class StripePayment extends msPaymentHandler implements msPaymentInterface
 {
     /** @var modX $modx */
     public $modx;
+    public $order;
 
 
     /**
@@ -41,7 +39,6 @@ class Stripe extends msPaymentHandler implements msPaymentInterface
 
         $this->modx->addPackage('stripe', $this->config['modelPath']);
         $this->modx->lexicon->load('stripe:default');
-
 
     }
 
