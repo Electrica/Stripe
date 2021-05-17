@@ -88,6 +88,10 @@ if ($transport->xpdo) {
                 $modx->log(MODX_LOG_LEVEL_ERROR, 'Error create resource Stripe payment');
             }
 
+        /**
+         * TODO Не Добавилось в настройку
+         */
+
             $id = $resource->response['object']['id'];
             $modx->setOption('stripe_confirm_page', $id);
 
