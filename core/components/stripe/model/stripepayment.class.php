@@ -14,14 +14,9 @@ class StripePayment extends msPaymentHandler implements msPaymentInterface
     public $modx;
     public $order;
 
-
-    /**
-     * @param modX $modx
-     * @param array $config
-     */
-    function __construct(xPDOObject $object, array $config = [])
+    function __construct(modX $modx, array $config = [])
     {
-        parent::__construct($object, $config);
+        parent::__construct($modx, $config);
 
         $corePath = MODX_CORE_PATH . 'components/stripe/';
         $assetsUrl = MODX_ASSETS_URL . 'components/stripe/';
@@ -43,13 +38,13 @@ class StripePayment extends msPaymentHandler implements msPaymentInterface
 
     }
 
-
     public function send(msOrder $order)
     {
         $confirm = $this->modx->getOption('stripe_confirm_page');
         if(!$confirm){
             return ;
         }
+        //TODO Сделать проверку на контекст
         $link = $this->modx->makeUrl($confirm, 'web',['order' => $order->get('id')],'full');
 
         return $this->success('', ['redirect' => $link]);

@@ -19,6 +19,7 @@ if(!$miniShop2){
 $order = $modx->getObject('msOrder', (int)$_POST['order']);
 /**
  * TODO Сделать проверку на уже оплаченный.
+ * TODO Сделать проверку на ошибки, вывод на экран
  */
 $stripe = new Stripe($modx, $order);
 $checkout_session = $stripe->run();

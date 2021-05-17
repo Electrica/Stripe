@@ -218,7 +218,7 @@ class Stripe{
 
     public function getAmountInCents()
     {
-        $amount = $this->order->get('cart_cost');
+        $amount = $this->order->get('cost');
         $amount = (int)($amount * 100);
         return $amount;
     }
