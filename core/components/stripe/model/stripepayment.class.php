@@ -4,7 +4,7 @@
  */
 if (!class_exists('msPaymentInterface')) {
     /** @noinspection PhpIncludeInspection */
-    require_once MODX_CORE_PATH . 'components/minishop2/model/minishop2/mspaymenthandler.class.php';
+    require_once MODX_CORE_PATH . 'components/minishop2/handlers/mspaymenthandler.class.php';
 }
 
 
